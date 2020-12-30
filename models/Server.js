@@ -4,6 +4,7 @@ const io = require("socket.io");
 const path = require("path");
 const { Socket } = require("dgram");
 const Sockets = require("./Sockets");
+const cors = require("cors");
 
 class Server {
   constructor() {
@@ -20,6 +21,8 @@ class Server {
 
   middlewares() {
     this.app.use(express.static(path.resolve(__dirname, "../public")));
+
+    this.app.use(cors());
   }
 
   configureSockets() {
